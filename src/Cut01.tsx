@@ -1,27 +1,53 @@
 import {
   AbsoluteFill,
   Audio,
+  Sequence,
   Video,
   interpolate,
   staticFile,
   useCurrentFrame,
-  useVideoConfig,
 } from "remotion";
 
-export const Cut01: React.FC = () => {
+const Subtitle: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const frame = useCurrentFrame();
-  const { fps } = useVideoConfig();
 
-  const opacity = interpolate(
-    frame,
-    [0, Math.round(0.25 * fps)],
-    [0, 1],
-    {
-      extrapolateLeft: "clamp",
-      extrapolateRight: "clamp",
-    },
+  const opacity = interpolate(frame, [0, 6], [0, 1], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
+
+  return (
+    <AbsoluteFill
+      style={{
+        justifyContent: "flex-end",
+        alignItems: "center",
+        paddingBottom: 170,
+        paddingLeft: 60,
+        paddingRight: 60,
+        pointerEvents: "none",
+      }}
+    >
+      <div
+        style={{
+          opacity,
+          color: "white",
+          fontSize: 52,
+          fontWeight: 700,
+          lineHeight: 1.45,
+          textAlign: "center",
+          textShadow:
+            "0 3px 12px rgba(0,0,0,0.9), 0 1px 3px rgba(0,0,0,1)",
+          fontFamily:
+            '"Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif',
+        }}
+      >
+        {children}
+      </div>
+    </AbsoluteFill>
   );
+};
 
+export const Cut01: React.FC = () => {
   return (
     <AbsoluteFill style={{ backgroundColor: "black" }}>
       <Video
@@ -35,35 +61,15 @@ export const Cut01: React.FC = () => {
 
       <Audio src={staticFile("audio/rina-intro-01.wav")} />
 
-      <AbsoluteFill
-        style={{
-          justifyContent: "flex-end",
-          alignItems: "center",
-          paddingBottom: 170,
-          paddingLeft: 60,
-          paddingRight: 60,
-          pointerEvents: "none",
-        }}
-      >
-        <div
-          style={{
-            opacity,
-            color: "white",
-            fontSize: 52,
-            fontWeight: 700,
-            lineHeight: 1.45,
-            textAlign: "center",
-            textShadow:
-              "0 3px 12px rgba(0,0,0,0.9), 0 1px 3px rgba(0,0,0,1)",
-            fontFamily:
-              '"Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif',
-          }}
-        >
-          はじめまして、小川莉奈です。
-          <br />
-          大阪で普通に会社員してます。
-        </div>
-      </AbsoluteFill>
+      {/* 0.0s - 2.5s */}
+      <Sequence from={0} durationInFrames={75}>
+        <Subtitle>はじめまして、小川莉奈です。</Subtitle>
+      </Sequence>
+
+      {/* 2.5s - 5.4s */}
+      <Sequence from={75} durationInFrames={87}>
+        <Subtitle>大阪で普通に会社員してます。</Subtitle>
+      </Sequence>
     </AbsoluteFill>
   );
 };
