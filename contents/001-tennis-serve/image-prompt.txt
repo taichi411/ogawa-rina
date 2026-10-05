@@ -1,6 +1,6 @@
 Generated with the built-in image_gen tool.
-Reference: public/assets/reference/rina-base.jpg
-Output: public/assets/rina/tennis/look-reference-v1.png
+Reference: characters/rina/images/base/rina-original-v1.jpg
+Output: characters/rina/images/variations/tennis-look-v1.png
 QA: Use as an appearance/wardrobe concept only. Court geometry and distance from player to net need correction before using as the serve start frame. Not a finished video asset.
 
 Use case: photorealistic-natural.

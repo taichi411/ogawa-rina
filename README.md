@@ -4,15 +4,18 @@
 
 ## キャラクター設定と制作基盤
 
-- [Character Bible](character/character-bible.md)：キャラクター設定の正史（canonical）。
-- [Visual Guide](character/visual-guide.md)：確定済みの外見ルール。ユーザー提供の [基準画像](public/assets/reference/rina-base.jpg) を最優先のVisual Referenceとし、左下のボブを主基準、右下のお団子をアレンジ参考とします。
-- [Voice Guide](character/voice-guide.md)：口調・価値観・発言ルール。声質は未確定です。
-- [Relationships](character/relationships.md)：美咲・奈緒との関係性。
+設定集の入口は **[莉奈・奈緒・美咲](characters/README.md)** です。各人物のページで設定と画像を見られます。
+写真は各人物の `images/inbox/` にそのまま追加してください。整理方法も設定集の入口に記載しています。
+
+- [Character Bible](characters/rina/profile.md)：キャラクター設定の正史（canonical）。
+- [Visual Guide](characters/rina/visual-guide.md)：確定済みの外見ルール。ユーザー提供の [基準画像](characters/rina/images/base/rina-original-v1.jpg) を最優先のVisual Referenceとし、左下のボブを主基準、右下のお団子をアレンジ参考とします。
+- [Voice Guide](characters/rina/voice-guide.md)：口調・価値観・発言ルール。声質は未確定です。
+- [Relationships](characters/relationships.md)：美咲・奈緒との関係性。
 - [制作フロー](docs/production-workflow.md)：ChatGPT Images、Codex、動画生成モデル、Remotionの役割と素材管理。
 - [TikTok #001：サーブ練習](contents/001-tennis-serve/README.md)：採用済み企画。構成・生成指示を準備済み、動画素材は未生成です。
 - [一人焼肉の企画候補](contents/001-hitori-yakiniku/README.md)：保留中。投稿順は未定です。
 
-素材の格納先は `public/assets/` 配下の `rina/`、`reference/`、`golf/`、`tennis/`、`drums/`、`misaki/`、`nao/` です。`reference/rina-base.jpg` に提供された基準画像を加工せず保存しています。各ディレクトリにはGitで格納先を保持するための `.gitkeep` も配置しています。
+設定と参照画像は `characters/`、投稿ごとの企画は `contents/`、動画で読み込む素材は `public/`、動画実装は `src/`、制作手順は `docs/` に保存します。人物画像は3人それぞれの `images/base/`（基準）、`images/variations/`（サブ画像）、`images/inbox/`（未整理）に分けます。自宅設定と画像は各人物の `home/`、集合写真は `characters/group/images/` にまとめます。
 
 現段階ではキャラクター設定と基準画像を登録し、テニス姿の参考画像を生成済みです。正面・横顔・全身のマスター画像は未整備で、動画素材の生成と完成動画の書き出しは未着手です。制作ではCharacter Bibleを基準とし、未確定事項は確定設定と区別して扱います。
 
