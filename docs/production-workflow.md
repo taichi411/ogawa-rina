@@ -21,8 +21,10 @@ Character Bible → ChatGPT Images → マスター画像（正面・横顔・�
 
 ## マスター画像
 
-- 設定は[Character Bible](../character/character-bible.md)、外見の参照方法は[Visual Guide](../character/visual-guide.md)に従う。
-- 既存の `public/assets/reference/rina-base.jpg` 左下のボブを主基準とし、ChatGPT Imagesで正面・横顔・全身を揃える。
+設定集の入口は[3人の設定集](../characters/README.md)。未整理画像・マスター候補は各人物の `images/inbox/`、採用した基準は `images/base/`、サブ画像は `images/variations/` に保存します。画像を追加しただけでは採用しません。
+
+- 設定は[Character Bible](../characters/rina/profile.md)、外見の参照方法は[Visual Guide](../characters/rina/visual-guide.md)に従う。
+- 既存の `characters/rina/images/base/rina-original-v1.jpg` 左下のボブを主基準とし、ChatGPT Imagesで正面・横顔・全身を揃える。
 - 顔立ち、体格、髪、口元のホクロが画像間で一致するか確認してからマスターとして採用する。生成しただけの画像は候補として扱う。
 - カット専用の衣装・背景・ポーズを持つ開始フレームは、マスターから派生させる。場面画像を自動的にマスターへ昇格させない。
 - 元の基準画像を保存し、採用版を置き換える際も版を分けて履歴を残す。
@@ -41,9 +43,9 @@ Character Bible → ChatGPT Images → マスター画像（正面・横顔・�
 
 | 保存先 | 内容 |
 |---|---|
-| `public/assets/reference/rina-base.jpg` | 加工しない原本の基準画像（登録済み） |
-| `public/assets/rina/masters/` | 正面・横顔・全身のマスター候補と採用版 |
-| `public/assets/rina/<テーマ>/` | 衣装・場面の参照画像、開始フレーム |
+| `characters/rina/images/base/rina-original-v1.jpg` | 加工しない原本の基準画像（登録済み） |
+| `characters/rina/images/base/` | 採用した基準画像（マスター候補はinboxへ） |
+| `characters/rina/images/variations/` | 衣装・場面の参照画像、開始フレーム |
 | `public/assets/video/<企画ID>/` | 生成した動画素材MP4 |
 | `public/assets/audio/<企画ID>/` | BGM・SE・音声 |
 | `public/assets/branding/` | 採用したロゴ等 |
