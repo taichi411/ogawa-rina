@@ -4,7 +4,9 @@
 
 ## ベースビジュアル
 
-採用済みの基準画像は未登録です。[基準画像フォルダ](images/base/README.md)に採用版を置き、このページに表示します。
+![西村奈緒の基準画像](images/base/nao-character-base-v1.jpg)
+
+採用済みの基準画像：[`nao-character-base-v1.jpg`](images/base/nao-character-base-v1.jpg)。顔・髪型・表情の参照用途は [Visual Guide](visual-guide.md) に記録しています。
 
 ## サブビジュアル
 
@@ -13,4 +15,3 @@
 ## 写真を追加
 
 [画像の投入口](images/inbox/README.md)にそのまま追加してください。
-
