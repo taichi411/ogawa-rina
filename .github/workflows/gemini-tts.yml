@@ -1,0 +1,75 @@
+name: Gemini TTS
+
+on:
+  pull_request:
+    paths:
+      - scripts/gemini_tts.py
+      - scripts/test_gemini_tts.py
+      - .github/workflows/gemini-tts.yml
+  workflow_dispatch:
+    inputs:
+      text:
+        description: 読み上げる台本（タグも入力可）
+        required: true
+        type: string
+        default: こんにちは。音声生成の接続テストです。
+      voice:
+        description: 声名またはvoice ID（初回はKore）
+        required: true
+        type: string
+        default: Kore
+      model:
+        description: Gemini TTSモデル
+        required: true
+        type: string
+        default: gemini-3.8-flash-tts
+      style:
+        description: 演技指示（読み上げ対象には含めない）
+        required: false
+        type: string
+        default: Warm, friendly Japanese; natural conversational pace.
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate without API calls
+        run: python -m unittest discover -s scripts -p test_gemini_tts.py -v
+
+  generate:
+    if: github.event_name == 'workflow_dispatch'
+    needs: verify
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Generate audio
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          TTS_TEXT: ${{ inputs.text }}
+          TTS_VOICE: ${{ inputs.voice }}
+          TTS_MODEL: ${{ inputs.model }}
+          TTS_STYLE: ${{ inputs.style }}
+        run: python scripts/gemini_tts.py
+      - name: Save generated audio
+        uses: actions/upload-artifact@v4
+        with:
+          name: gemini-tts-${{ github.run_id }}-${{ github.run_attempt }}
+          path: out/gemini-tts/
+          if-no-files-found: error
+          retention-days: 7
