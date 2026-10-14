@@ -1,0 +1,26 @@
+{
+  "topics": [
+    "AI",
+    "ドラム",
+    "ゴルフ",
+    "テニス",
+    "大阪"
+  ],
+  "language": "ja",
+  "lookbackHours": 24,
+  "maxResultsPerTopic": 25,
+  "minFollowers": 3000,
+  "minLikes": 20,
+  "topPosts": 20,
+  "draftsPerRun": 4,
+  "exclude": {
+    "replies": true,
+    "retweets": true
+  },
+  "weights": {
+    "like": 1,
+    "repost": 2,
+    "reply": 1.5,
+    "quote": 1.5
+  }
+}
