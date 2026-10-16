@@ -57,3 +57,24 @@ python -m unittest discover -s scripts -p test_gemini_tts.py -v
 - [GitHub Actions Secrets](https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/use-secrets)
 
 この段階ではチャットからworkflowを新規起動する接続は追加していません。まず手動でAPI接続を確認します。
+
+## 莉奈のカスタム声IDを調べる
+
+1. 声一覧機能の変更をmainへマージします。
+2. **Actions → Gemini Voice IDs → Run workflow** を開きます。
+3. ブランチmain、検索語 `ogawa` のまま実行します。既存の `GEMINI_API_KEY` をそのまま利用します。
+4. 実行ページのSummaryに表示名とVoice IDの表が出ます。artifactにも `voices.json` と `voices.md` が保存されます。
+5. 実行ページのURLをこのチャットへ送ってください。取得可能な結果から候補を確認します。
+
+この処理は `GET /v1beta/voices` で保存済みのカスタム声を検索するだけで、声の作成・削除・音声生成は行いません。APIキー、voice replication key、音声データは出力しません。声名とIDの表はpublicリポジトリのActions Summaryに表示されます。
+
+同じ `ogawa-rena 3` が複数ある場合も、異なるIDを全件残します。並び順だけでお気に入りの声を決めません。各候補のIDを **Gemini TTS → Run workflow → voice** に入力して同じ短い台本で試し、AI Studioのお気に入りの声と聴き比べて選びます。APIのIDは表示名ではなく `voice_...` 等の値です。
+
+0件なら検索を空欄にして再実行し、それでも見つからなければAI Studioで使ったアカウント・プロジェクトとAPIキー側の利用権限・声の保存状態を確認します。APIが列挙するのは呼び出し元がアクセスできる保存済みの声で、AI Studioに見えている声がこのキーで必ず取得できるとは限りません。
+
+```bash
+python scripts/gemini_voices.py --search ogawa
+python scripts/gemini_voices.py --search ""
+```
+
+仕様：[Google Voices API](https://ai.google.dev/api/voices)。APIはBetaです。
